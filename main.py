@@ -2,6 +2,7 @@ import yfinance as yf
 import numpy as np
 import datetime
 
+
 stock_symbol = input("Please enter a NYSE stock symbol: ")
 days = input("How many days ago do you want to retrace? ")
 
@@ -24,6 +25,6 @@ else:
         data['Signal'] = np.where((data['10_day_SMA'] > data['50_day_SMA']) & (data['10_day_SMA_derivative'] > 0), 'Long',
                                   np.where((data['10_day_SMA'] < data['50_day_SMA']) & (data['10_day_SMA_derivative'] < 0), 'Short', 'N/A'))
 
-        data.to_csv(f'{stock_symbol}_analysis.csv', index=True)
+        data.to_csv(f'{stock_symbol}_{days}_analysis.csv', index=True)
 
-        print(f"Analysis complete. Results stored in '{stock_symbol}_analysis.csv'")
+        print(f"Analysis complete. Results stored in '{stock_symbol}_{days}_analysis.csv'")
